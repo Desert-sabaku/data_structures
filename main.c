@@ -11,15 +11,27 @@ int main(void)
 
     PrintList(head);
 
-    printf("%d\n", GetNodeByIndex(3, head));
+    int val;
+    if (GetNodeByIndex(3, head, &val) == 0)
+        printf("%d\n", val);
+    else
+        perror("GetNodeByIndex failed");
 
-    UpdateNodeByIndex(3, 999, &head);
+    if (UpdateNodeByIndex(3, 999, &head) != 0)
+        perror("UpdateNodeByIndex failed");
 
-    printf("%d\n", GetNodeByIndex(3, head));
+    if (GetNodeByIndex(3, head, &val) == 0)
+        printf("%d\n", val);
+    else
+        perror("GetNodeByIndex failed");
 
     PrintList(head);
 
-    printf("sum :%d\n", PrependNodeAndCalcSum(32, &head));
+    int sum = 0;
+    if (PrependNodeAndCalcSum(32, &head, &sum) == 0)
+        printf("sum :%d\n", sum);
+    else
+        perror("PrependNodeAndCalcSum failed");
 
     printf("idx: %zu\n", FindNode(999, head));
 
