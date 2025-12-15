@@ -35,5 +35,7 @@ int main(void)
 
     printf("idx: %zu\n", FindNode(999, head));
 
+    FreeList(head);
+
     return 0;
 }
