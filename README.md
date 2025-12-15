@@ -7,7 +7,7 @@ pwd # /home/[USERNAME]/.../data_structures/build ← buildにいることを確�
 ```
 
 ```sh
-cmake ..
+cmake .. # Makefileの生成. `CMakeLists.txt`を更新したときはこれを実行
 ```
 
 ビルドするよ
