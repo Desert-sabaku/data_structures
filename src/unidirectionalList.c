@@ -39,7 +39,7 @@ int PrependNode(int data, T_Node **head)
     return 0;
 }
 
-void PrintList(T_Node *head)
+void PrintList(const T_Node *head)
 {
     while (head != NULL)
     {
@@ -59,14 +59,14 @@ void FreeList(T_Node *head)
     }
 }
 
-int GetNodeByIndex(size_t index, T_Node *head, int *out)
+int GetNodeByIndex(size_t index, const T_Node *head, int *out)
 {
     if (out == NULL)
     {
         errno = EINVAL;
         return -1;
     }
-    T_Node *current = head;
+    const T_Node *current = head;
     for (size_t i = 0; i < index; i++)
     {
         if (current == NULL)
@@ -137,7 +137,7 @@ int PrependNodeAndCalcSum(int data, T_Node **head, int *out_sum)
     return 0;
 }
 
-size_t FindNode(int data, T_Node *head)
+size_t FindNode(int data, const T_Node *head)
 {
     size_t idx = 0;
     while (head)

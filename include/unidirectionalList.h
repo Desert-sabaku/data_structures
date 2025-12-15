@@ -36,7 +36,7 @@ extern "C"
      * @brief リストを標準出力へ表示する
      * @param head リスト先頭へのポインタ（NULL 可）
      */
-    void PrintList(T_Node *head);
+    void PrintList(const T_Node *head);
 
     /**
      * @brief リストの全メモリを解放する
@@ -51,7 +51,7 @@ extern "C"
      * @param out 取得した値を書き込むポインタ（NULL不可）
      * @return 0:成功, -1:失敗（errno に詳細）
      */
-    int GetNodeByIndex(size_t index, T_Node *head, int *out);
+    int GetNodeByIndex(size_t index, const T_Node *head, int *out);
 
     /**
      * @brief 指定インデックスのデータを更新する
@@ -77,10 +77,10 @@ extern "C"
      * @param head リスト先頭
      * @return 見つかったインデックス、見つからなければ -1
      */
-    size_t FindNode(int data, T_Node *head);
+    size_t FindNode(int data, const T_Node *head);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* UNIDIRECTIONAL_LIST_H */
+#endif // UNIDIRECTIONAL_LIST_H
