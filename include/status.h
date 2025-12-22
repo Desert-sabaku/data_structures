@@ -57,4 +57,37 @@ typedef enum Status_e
 
 } Status_E;
 
+static const char *status_to_string(Status_E status)
+{
+    switch (status)
+    {
+    case SUCCESS:
+        return "SUCCESS";
+    case ERR_INVALID_ARG:
+        return "ERR_INVALID_ARG";
+    case ERR_OUT_OF_MEMORY:
+        return "ERR_OUT_OF_MEMORY";
+    case ERR_NOT_FOUND:
+        return "ERR_NOT_FOUND";
+    case ERR_ALREADY_EXISTS:
+        return "ERR_ALREADY_EXISTS";
+    case ERR_NOT_PERMITTED:
+        return "ERR_NOT_PERMITTED";
+    case ERR_INTERNAL:
+        return "ERR_INTERNAL";
+    case ERR_IO:
+        return "ERR_IO";
+    case ERR_TIMEOUT:
+        return "ERR_TIMEOUT";
+    case ERR_RANGE:
+        return "ERR_RANGE";
+    case NOT_FOUND:
+        return "NOT_FOUND";
+    case ERR_COUNT:
+        return "ERR_COUNT";
+    default:
+        return "UNKNOWN";
+    }
+}
+
 #endif // STATUS_H
