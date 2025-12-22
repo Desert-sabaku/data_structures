@@ -5,7 +5,7 @@
  * @file unidirectionalList.h
  * @brief 単方向リストの公開 API 定義
  * @details 本ヘッダは単方向（Singly Linked List）の基本操作を提供します。
- * 返り値規約: 0 = 成功, -1 = 失敗（詳細は errno に設定: ENOMEM/EINVAL/ERANGE など）
+ * 返り値規約: 0 = 成功, -1 = 失敗（詳細は status に設定）
  */
 
 #include <stddef.h>
@@ -28,7 +28,7 @@ extern "C"
      * @brief リスト先頭に節を追加する
      * @param data 追加するデータ
      * @param head リスト先頭へのポインタのポインタ（NULL不可）
-     * @return 0:成功, -1:失敗（errno に詳細）
+     * @return 0:成功, -1:失敗
      */
     int PrependNode(int data, Node_T **head);
 
@@ -49,7 +49,7 @@ extern "C"
      * @param index 0 基点のインデックス
      * @param head リスト先頭
      * @param out 取得した値を書き込むポインタ（NULL不可）
-     * @return 0:成功, -1:失敗（errno に詳細）
+     * @return 0:成功, -1:失敗
      */
     int GetNodeByIndex(size_t index, const Node_T *head, int *out);
 
@@ -58,7 +58,7 @@ extern "C"
      * @param index 0 基点のインデックス
      * @param data 新しいデータ
      * @param head リスト先頭へのポインタのポインタ（NULL不可）
-     * @return 0:成功, -1:失敗（errno に詳細）
+     * @return 0:成功, -1:失敗
      */
     int UpdateNodeByIndex(size_t index, int data, Node_T **head);
 
@@ -67,7 +67,7 @@ extern "C"
      * @param data 追加するデータ
      * @param head リスト先頭へのポインタのポインタ（NULL不可）
      * @param out_sum 合計値を書き込むポインタ（NULL不可）
-     * @return 0:成功, -1:失敗（errno に詳細）
+     * @return 0:成功, -1:失敗
      */
     int PrependNodeAndCalcSum(int data, Node_T **head, int *out_sum);
 
@@ -75,9 +75,10 @@ extern "C"
      * @brief データ値を探索し、その最初のインデックスを返す
      * @param data 探索する値
      * @param head リスト先頭
-     * @return 見つかったインデックス、見つからなければ -1
+     * @param out 取得した値を書き込むポインタ
+     * @return 0:成功, -1:失敗
      */
-    size_t FindNode(int data, const Node_T *head);
+    size_t FindNode(int data, const Node_T *head, int *out);
 
 #ifdef __cplusplus
 }

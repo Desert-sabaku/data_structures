@@ -1,10 +1,5 @@
 // 単方向リストの実装
 
-/*
-返り値は関数の実行ステータスを返す.
-呼び出し元に結果を返すときにはポインタを経由して受け渡す.
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
