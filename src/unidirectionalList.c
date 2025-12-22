@@ -16,9 +16,9 @@
  * @return 成功時は新しい節へのポインタ、失敗時は `NULL`（`errno`=`ENOMEM`）
  * @note 公開 API ではなく、実装内でのみ使用されます。
  */
-static T_Node *GenerateNode(int data)
+static Node_T *GenerateNode(int data)
 {
-    T_Node *new_node = malloc(sizeof(T_Node));
+    Node_T *new_node = malloc(sizeof(Node_T));
     if (new_node == NULL)
     {
         errno = ENOMEM;
@@ -29,14 +29,14 @@ static T_Node *GenerateNode(int data)
     return new_node;
 }
 
-int PrependNode(int data, T_Node **head)
+int PrependNode(int data, Node_T **head)
 {
     if (head == NULL)
     {
         errno = EINVAL;
         return -1;
     }
-    T_Node *new_node = GenerateNode(data);
+    Node_T *new_node = GenerateNode(data);
     if (new_node == NULL)
         return -1;
     new_node->next = *head;
@@ -44,7 +44,7 @@ int PrependNode(int data, T_Node **head)
     return 0;
 }
 
-void PrintList(const T_Node *head)
+void PrintList(const Node_T *head)
 {
     while (head != NULL)
     {
@@ -54,24 +54,24 @@ void PrintList(const T_Node *head)
     printf("NULL\n");
 }
 
-void FreeList(T_Node *head)
+void FreeList(Node_T *head)
 {
     while (head != NULL)
     {
-        T_Node *next_node = head->next;
+        Node_T *next_node = head->next;
         free(head);
         head = next_node;
     }
 }
 
-int GetNodeByIndex(size_t index, const T_Node *head, int *out)
+int GetNodeByIndex(size_t index, const Node_T *head, int *out)
 {
     if (out == NULL)
     {
         errno = EINVAL;
         return -1;
     }
-    const T_Node *current = head;
+    const Node_T *current = head;
     for (size_t i = 0; i < index; i++)
     {
         if (current == NULL)
@@ -90,7 +90,7 @@ int GetNodeByIndex(size_t index, const T_Node *head, int *out)
     return 0;
 }
 
-int UpdateNodeByIndex(size_t index, int data, T_Node **head)
+int UpdateNodeByIndex(size_t index, int data, Node_T **head)
 {
     if (head == NULL || *head == NULL)
     {
@@ -98,7 +98,7 @@ int UpdateNodeByIndex(size_t index, int data, T_Node **head)
         return -1;
     }
 
-    T_Node *current = *head;
+    Node_T *current = *head;
     for (size_t i = 0; i < index; i++)
     {
         if (current == NULL)
@@ -118,21 +118,21 @@ int UpdateNodeByIndex(size_t index, int data, T_Node **head)
     return -1;
 }
 
-int PrependNodeAndCalcSum(int data, T_Node **head, int *out_sum)
+int PrependNodeAndCalcSum(int data, Node_T **head, int *out_sum)
 {
     if (out_sum == NULL)
     {
         errno = EINVAL;
         return -1;
     }
-    T_Node *new_node = GenerateNode(data);
+    Node_T *new_node = GenerateNode(data);
     if (new_node == NULL)
         return -1;
     new_node->next = *head;
     *head = new_node;
 
     int sum = 0;
-    T_Node *current = *head;
+    Node_T *current = *head;
     while (current)
     {
         sum += current->data;
@@ -142,7 +142,7 @@ int PrependNodeAndCalcSum(int data, T_Node **head, int *out_sum)
     return 0;
 }
 
-size_t FindNode(int data, const T_Node *head)
+size_t FindNode(int data, const Node_T *head)
 {
     size_t idx = 0;
     while (head)

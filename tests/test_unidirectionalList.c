@@ -11,7 +11,7 @@
 
 void test_prepend_node_single()
 {
-    T_Node *head = NULL;
+    Node_T *head = NULL;
     assert(PrependNode(5, &head) == 0);
     assert(head != NULL);
     assert(head->data == 5);
@@ -22,7 +22,7 @@ void test_prepend_node_single()
 
 void test_prepend_node_multiple()
 {
-    T_Node *head = NULL;
+    Node_T *head = NULL;
     assert(PrependNode(3, &head) == 0);
     assert(PrependNode(2, &head) == 0);
     assert(PrependNode(1, &head) == 0);
@@ -50,7 +50,7 @@ void test_prepend_node_null_head_pointer()
 
 void test_get_node_by_index_valid()
 {
-    T_Node *head = NULL;
+    Node_T *head = NULL;
     PrependNode(3, &head);
     PrependNode(2, &head);
     PrependNode(1, &head);
@@ -71,7 +71,7 @@ void test_get_node_by_index_valid()
 
 void test_get_node_by_index_out_of_range()
 {
-    T_Node *head = NULL;
+    Node_T *head = NULL;
     PrependNode(1, &head);
 
     int val;
@@ -85,7 +85,7 @@ void test_get_node_by_index_out_of_range()
 
 void test_get_node_by_index_null_out()
 {
-    T_Node *head = NULL;
+    Node_T *head = NULL;
     PrependNode(1, &head);
 
     errno = 0;
@@ -98,7 +98,7 @@ void test_get_node_by_index_null_out()
 
 void test_get_node_by_index_empty_list()
 {
-    T_Node *head = NULL;
+    Node_T *head = NULL;
     int val;
 
     errno = 0;
@@ -114,7 +114,7 @@ void test_get_node_by_index_empty_list()
 
 void test_update_node_by_index_valid()
 {
-    T_Node *head = NULL;
+    Node_T *head = NULL;
     PrependNode(3, &head);
     PrependNode(2, &head);
     PrependNode(1, &head);
@@ -131,7 +131,7 @@ void test_update_node_by_index_valid()
 
 void test_update_node_by_index_out_of_range()
 {
-    T_Node *head = NULL;
+    Node_T *head = NULL;
     PrependNode(1, &head);
 
     errno = 0;
@@ -153,7 +153,7 @@ void test_update_node_by_index_null_head()
 
 void test_update_node_by_index_empty_list()
 {
-    T_Node *head = NULL;
+    Node_T *head = NULL;
 
     errno = 0;
     assert(UpdateNodeByIndex(0, 999, &head) == -1);
@@ -168,7 +168,7 @@ void test_update_node_by_index_empty_list()
 
 void test_prepend_node_and_calc_sum_single()
 {
-    T_Node *head = NULL;
+    Node_T *head = NULL;
     int sum;
 
     assert(PrependNodeAndCalcSum(5, &head, &sum) == 0);
@@ -180,7 +180,7 @@ void test_prepend_node_and_calc_sum_single()
 
 void test_prepend_node_and_calc_sum_multiple()
 {
-    T_Node *head = NULL;
+    Node_T *head = NULL;
     int sum;
 
     assert(PrependNodeAndCalcSum(3, &head, &sum) == 0);
@@ -198,7 +198,7 @@ void test_prepend_node_and_calc_sum_multiple()
 
 void test_prepend_node_and_calc_sum_null_out()
 {
-    T_Node *head = NULL;
+    Node_T *head = NULL;
 
     errno = 0;
     assert(PrependNodeAndCalcSum(5, &head, NULL) == -1);
@@ -209,7 +209,7 @@ void test_prepend_node_and_calc_sum_null_out()
 
 void test_prepend_node_and_calc_sum_negative()
 {
-    T_Node *head = NULL;
+    Node_T *head = NULL;
     int sum;
 
     assert(PrependNodeAndCalcSum(10, &head, &sum) == 0);
@@ -228,7 +228,7 @@ void test_prepend_node_and_calc_sum_negative()
 
 void test_find_node_found()
 {
-    T_Node *head = NULL;
+    Node_T *head = NULL;
     PrependNode(5, &head);
     PrependNode(3, &head);
     PrependNode(1, &head);
@@ -243,7 +243,7 @@ void test_find_node_found()
 
 void test_find_node_not_found()
 {
-    T_Node *head = NULL;
+    Node_T *head = NULL;
     PrependNode(3, &head);
     PrependNode(1, &head);
 
@@ -255,7 +255,7 @@ void test_find_node_not_found()
 
 void test_find_node_empty_list()
 {
-    T_Node *head = NULL;
+    Node_T *head = NULL;
 
     assert(FindNode(1, head) == (size_t)-1);
 
@@ -268,7 +268,7 @@ void test_find_node_empty_list()
 
 void test_free_list_single()
 {
-    T_Node *head = NULL;
+    Node_T *head = NULL;
     PrependNode(5, &head);
     FreeList(head); // Should not crash
     printf("✓ test_free_list_single passed\n");
@@ -276,7 +276,7 @@ void test_free_list_single()
 
 void test_free_list_multiple()
 {
-    T_Node *head = NULL;
+    Node_T *head = NULL;
     for (int i = 0; i < 10; i++)
     {
         PrependNode(i, &head);
