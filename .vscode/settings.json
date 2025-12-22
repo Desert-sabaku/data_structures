@@ -2,4 +2,5 @@
     "cmake.sourceDirectory": "/home/sabaku_laptop/procon/data_structures",
     "C_Cpp.dimInactiveRegions": true,
     "C_Cpp.errorSquiggles": "enabled",
+    "C_Cpp.default.cStandard": "c23"
 }
