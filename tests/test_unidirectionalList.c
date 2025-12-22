@@ -2,8 +2,8 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <errno.h>
 #include "unidirectionalList.h"
+#include "status.h"
 
 // ============================================================================
 // PrependNode のテスト
@@ -38,9 +38,7 @@ void test_prepend_node_multiple()
 
 void test_prepend_node_null_head_pointer()
 {
-    errno = 0;
-    assert(PrependNode(5, NULL) == -1);
-    assert(errno == EINVAL);
+    assert(PrependNode(5, NULL) == ERR_INVALID_ARG);
     printf("✓ test_prepend_node_null_head_pointer passed\n");
 }
 
@@ -75,9 +73,7 @@ void test_get_node_by_index_out_of_range()
     PrependNode(1, &head);
 
     int val;
-    errno = 0;
-    assert(GetNodeByIndex(5, head, &val) == -1);
-    assert(errno == ERANGE);
+    assert(GetNodeByIndex(5, head, &val) == ERR_RANGE);
 
     FreeList(head);
     printf("✓ test_get_node_by_index_out_of_range passed\n");
@@ -88,9 +84,7 @@ void test_get_node_by_index_null_out()
     Node_T *head = NULL;
     PrependNode(1, &head);
 
-    errno = 0;
-    assert(GetNodeByIndex(0, head, NULL) == -1);
-    assert(errno == EINVAL);
+    assert(GetNodeByIndex(0, head, NULL) == ERR_INVALID_ARG);
 
     FreeList(head);
     printf("✓ test_get_node_by_index_null_out passed\n");
@@ -101,9 +95,7 @@ void test_get_node_by_index_empty_list()
     Node_T *head = NULL;
     int val;
 
-    errno = 0;
-    assert(GetNodeByIndex(0, head, &val) == -1);
-    assert(errno == ERANGE);
+    assert(GetNodeByIndex(0, head, &val) == ERR_RANGE);
 
     printf("✓ test_get_node_by_index_empty_list passed\n");
 }
@@ -134,9 +126,7 @@ void test_update_node_by_index_out_of_range()
     Node_T *head = NULL;
     PrependNode(1, &head);
 
-    errno = 0;
-    assert(UpdateNodeByIndex(5, 999, &head) == -1);
-    assert(errno == ERANGE);
+    assert(UpdateNodeByIndex(5, 999, &head) == ERR_RANGE);
 
     FreeList(head);
     printf("✓ test_update_node_by_index_out_of_range passed\n");
@@ -144,9 +134,7 @@ void test_update_node_by_index_out_of_range()
 
 void test_update_node_by_index_null_head()
 {
-    errno = 0;
-    assert(UpdateNodeByIndex(0, 999, NULL) == -1);
-    assert(errno == EINVAL);
+    assert(UpdateNodeByIndex(0, 999, NULL) == ERR_INVALID_ARG);
 
     printf("✓ test_update_node_by_index_null_head passed\n");
 }
@@ -155,9 +143,7 @@ void test_update_node_by_index_empty_list()
 {
     Node_T *head = NULL;
 
-    errno = 0;
-    assert(UpdateNodeByIndex(0, 999, &head) == -1);
-    assert(errno == EINVAL);
+    assert(UpdateNodeByIndex(0, 999, &head) == ERR_INVALID_ARG);
 
     printf("✓ test_update_node_by_index_empty_list passed\n");
 }
@@ -200,9 +186,7 @@ void test_prepend_node_and_calc_sum_null_out()
 {
     Node_T *head = NULL;
 
-    errno = 0;
-    assert(PrependNodeAndCalcSum(5, &head, NULL) == -1);
-    assert(errno == EINVAL);
+    assert(PrependNodeAndCalcSum(5, &head, NULL) == ERR_INVALID_ARG);
 
     printf("✓ test_prepend_node_and_calc_sum_null_out passed\n");
 }
@@ -233,9 +217,14 @@ void test_find_node_found()
     PrependNode(3, &head);
     PrependNode(1, &head);
 
-    assert(FindNode(1, head) == 0);
-    assert(FindNode(3, head) == 1);
-    assert(FindNode(5, head) == 2);
+    size_t idx;
+
+    assert(FindNode(1, head, &idx) == SUCCESS);
+    assert(idx == 0);
+    assert(FindNode(3, head, &idx) == SUCCESS);
+    assert(idx == 1);
+    assert(FindNode(5, head, &idx) == SUCCESS);
+    assert(idx == 2);
 
     FreeList(head);
     printf("✓ test_find_node_found passed\n");
@@ -247,7 +236,8 @@ void test_find_node_not_found()
     PrependNode(3, &head);
     PrependNode(1, &head);
 
-    assert(FindNode(999, head) == (size_t)-1);
+    size_t idx;
+    assert(FindNode(999, head, &idx) == NOT_FOUND);
 
     FreeList(head);
     printf("✓ test_find_node_not_found passed\n");
@@ -257,7 +247,8 @@ void test_find_node_empty_list()
 {
     Node_T *head = NULL;
 
-    assert(FindNode(1, head) == (size_t)-1);
+    size_t idx;
+    assert(FindNode(1, head, &idx) == NOT_FOUND);
 
     printf("✓ test_find_node_empty_list passed\n");
 }
