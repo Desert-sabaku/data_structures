@@ -1,1 +1,0 @@
-/home/runner/work/data_structures/.codeql-scratch/dbs/cpp/working/autobuild/bin/cc -O3 -DNDEBUG -Wl,--dependency-file=CMakeFiles/data_structures.dir/link.d CMakeFiles/data_structures.dir/main.c.o -o data_structures  libunidirectionalList.a
