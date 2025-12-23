@@ -1,0 +1,2 @@
+/usr/bin/ar qc libunidirectionalList.a CMakeFiles/unidirectionalList.dir/src/unidirectionalList.c.o
+/usr/bin/ranlib libunidirectionalList.a
