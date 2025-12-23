@@ -57,7 +57,7 @@ typedef enum Status_e
 
 } Status_E;
 
-static const char *status_to_string(Status_E status)
+static inline const char *status_to_string(Status_E status)
 {
     switch (status)
     {
