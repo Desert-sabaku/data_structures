@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "unidirectionalList.h"
 #include "status.h"
 
@@ -156,3 +157,99 @@ int main(void)
     FreeList(head);
     return 0;
 }
+
+/*
+$ /home/sabaku_laptop/procon/data_structures/build/data_structures
+
+=== Singly Linked List Menu ===
+1) Prepend value
+2) Get value by index
+3) Update value by index
+4) Find index by value
+5) Print list
+6) Free list
+0) Exit
+> 1
+Value to prepend: 77
+PrependNode -> SUCCESS
+
+=== Singly Linked List Menu ===
+1) Prepend value
+2) Get value by index
+3) Update value by index
+4) Find index by value
+5) Print list
+6) Free list
+0) Exit
+> 2
+Index to get: 0
+Value at index 0: 77
+
+=== Singly Linked List Menu ===
+1) Prepend value
+2) Get value by index
+3) Update value by index
+4) Find index by value
+5) Print list
+6) Free list
+0) Exit
+> 3
+Index to update: 0
+New value: 777
+UpdateNodeByIndex -> SUCCESS
+
+=== Singly Linked List Menu ===
+1) Prepend value
+2) Get value by index
+3) Update value by index
+4) Find index by value
+5) Print list
+6) Free list
+0) Exit
+> 4
+Value to find: 777
+Found value 777 at index 0
+
+=== Singly Linked List Menu ===
+1) Prepend value
+2) Get value by index
+3) Update value by index
+4) Find index by value
+5) Print list
+6) Free list
+0) Exit
+> 5
+777 -> NULL
+
+=== Singly Linked List Menu ===
+1) Prepend value
+2) Get value by index
+3) Update value by index
+4) Find index by value
+5) Print list
+6) Free list
+0) Exit
+> 6
+List freed.
+
+=== Singly Linked List Menu ===
+1) Prepend value
+2) Get value by index
+3) Update value by index
+4) Find index by value
+5) Print list
+6) Free list
+0) Exit
+> 5
+List is empty.
+
+=== Singly Linked List Menu ===
+1) Prepend value
+2) Get value by index
+3) Update value by index
+4) Find index by value
+5) Print list
+6) Free list
+0) Exit
+> 0
+*/
