@@ -7,31 +7,7 @@
 #include <iostream>
 #include <string>
 #include <memory>
-
-struct Node_t
-{
-    std::string data;
-    Node_t *next;
-};
-
-class List
-{
-private:
-    size_t size;
-    std::unique_ptr<Node_t> head;
-    std::unique_ptr<Node_t> generate(std::string data);
-
-public:
-    List();
-    ~List();
-    void append(std::string data);
-    void prepend(std::string data);
-    void insertAt(size_t index, std::string data);
-    void print() const;
-    void delAt(size_t index);
-    void clear();
-    size_t getSize() const { return this->size; }
-};
+#include "unidirectionalList.hpp"
 
 List::List()
 {
@@ -88,6 +64,21 @@ void List::insertAt(size_t index, std::string data)
         current->next = new_node.release();
     }
     size++;
+}
+
+std::string List::getAt(size_t index)
+{
+    if (index > this->size)
+    {
+        std::cerr << "Index out of bounds" << std::endl;
+    }
+
+    auto current = this->head.get();
+    for (size_t i = 0; i < index; i++)
+    {
+        current = current->next;
+    }
+    return current->data;
 }
 
 void List::print() const
